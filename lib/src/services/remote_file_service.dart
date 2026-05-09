@@ -115,10 +115,15 @@ class RemoteFileService {
         await sink.addStream(
           remote.read(onProgress: (read) => onProgress?.call(read, total)),
         );
+        return localFile;
+      } catch (_) {
+        if (await localFile.exists()) {
+          await localFile.delete();
+        }
+        rethrow;
       } finally {
         await sink.close();
       }
-      return localFile;
     } finally {
       await remote.close();
     }
