@@ -105,7 +105,7 @@ class _TShellAppState extends State<TShellApp> {
           ),
           labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         ),
-        cardTheme: CardTheme(
+        cardTheme: CardThemeData(
           color: AppPalette.paper,
           elevation: 0,
           shape: RoundedRectangleBorder(
