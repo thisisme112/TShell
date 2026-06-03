@@ -111,11 +111,19 @@ class RemoteFileService {
       final attrs = await remote.stat();
       final total = attrs.size ?? 0;
       final sink = localFile.openWrite();
-      await sink.addStream(
-        remote.read(onProgress: (read) => onProgress?.call(read, total)),
-      );
-      await sink.close();
-      return localFile;
+      try {
+        await sink.addStream(
+          remote.read(onProgress: (read) => onProgress?.call(read, total)),
+        );
+        return localFile;
+      } catch (_) {
+        if (await localFile.exists()) {
+          await localFile.delete();
+        }
+        rethrow;
+      } finally {
+        await sink.close();
+      }
     } finally {
       await remote.close();
     }

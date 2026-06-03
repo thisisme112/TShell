@@ -15,7 +15,7 @@ class BackgroundKeepAlive {
         {'sessions': sessions},
       );
     } catch (_) {
-      // Desktop and debug shells can run without the Android service.
+      // Keep running even when the Android background channel is unavailable.
     }
   }
 }
