@@ -1,0 +1,3 @@
+repository:
+  description: Cross-platform SSH terminal and remote ops workstation built with Flutter.
+  topics: ssh, sftp, terminal, flutter, devtools, remote-server, devops, windows, android
